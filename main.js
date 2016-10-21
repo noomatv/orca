@@ -66,8 +66,9 @@ function handleSubmission() {
   ipcMain.on('did-submit-form', (event, arguments) => {
     const { s3Data, dirname } = arguments;
 
-    NM_VIDEO_COUNT = 0
     NM_PAGE_COUNT = 0
+    NM_VIDEO_COUNT = 0
+    NM_OTHER_PAGE_COUNT = 0
 
     return NoomaSync.startScript(dirname, s3Data, event.sender)
   });
