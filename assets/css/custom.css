@@ -1,0 +1,24 @@
+#nooma-logo {
+  width: 15px;
+}
+
+#aws-section,
+#bookshelf-section {
+  display: none;
+}
+
+.inputs-container {
+  width: 90%;
+  margin: 20px auto 0 auto;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  margin: 10px auto 0 auto;
+}
+
+#sync-button-container {
+  margin-top: 50px;
+  text-align: center;
+}
