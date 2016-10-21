@@ -13,7 +13,6 @@ const $ = require('jQuery')
 
 storage.get('aws-credentials', function(error, data) {
   if (error) throw error
-  console.log('aws', data)
 
   $('#access-key-id-input').val(data.accessKeyId)
   $('#secret-access-key-input').val(data.secretAccessKey)
