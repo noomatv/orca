@@ -22,7 +22,9 @@
     "electron-json-storage": "^2.0.1",
     "jQuery": "^1.7.4",
     "markdown": "^0.5.0",
+    "mkdirp": "^0.5.1",
     "node-dir": "^0.1.16",
+    "rimraf": "^2.5.4",
     "s3": "^4.4.0",
     "uuid": "^2.0.3",
     "yamljs": "^0.2.8"
