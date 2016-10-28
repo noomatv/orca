@@ -84,6 +84,8 @@ $('#sync-button').on('click', function() {
   $('#sync-button').prop('disabled', true)
   $('#sync-button').removeClass("btn-primary")
   $('#sync-button').html('Syncing')
+  $('#update-status-paragraph').html('')
+  $('#progress-table').html('')
 
   ipcRenderer.send('did-submit-form', {
     s3Data: {
@@ -98,12 +100,41 @@ $('#sync-button').on('click', function() {
   })
 })
 
+ipcRenderer.on('done-syncing', (event, msg) => {
+  $('#sync-button').prop('disabled', false)
+  $('#update-status-paragraph').text('Done')
+  $('#sync-button').addClass("btn-primary")
+  $('#sync-button').html('Sync')
+})
+
 ipcRenderer.on('update-status', (event, msg) => {
   $('#update-status-paragraph').text(msg.msg)
 })
 
-ipcRenderer.on('done-syncing', (event, msg) => {
-  $('#sync-button').prop('disabled', false)
-  $('#sync-button').addClass("btn-primary")
-  $('#sync-button').html('Sync')
+ipcRenderer.on('update-progress', (event, incoming) => {
+  if($('#' + incoming.id).length) {
+    var tableRow = `<td>${incoming.name}</td>
+                    <td>${incoming.progressAmount}</td>
+                    <td>${incoming.progressTotal}</td>
+                    <td class="progress">${incoming.progress}</td>`
+
+    $('#' + incoming.id).html(tableRow)
+  } else {
+    var tableRow = `<tr id=${incoming.id}>
+                      <td>${incoming.name}</td>
+                      <td>${incoming.progressAmount}</td>
+                      <td>${incoming.progressTotal}</td>
+                      <td class="progress">${incoming.progress}</td>
+                    </tr>`
+
+    $('#progress-table').append(tableRow)
+  }
+})
+
+ipcRenderer.on('done-uploading', (event, incoming) => {
+  $('#' + incoming.id + ' td.progress').text('Done')
+})
+
+ipcRenderer.on('upload-error', (event, incoming) => {
+  $('#' + incoming.id + ' td.progress').text('Error')
 })

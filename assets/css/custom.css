@@ -22,3 +22,7 @@ img {
   margin-top: 50px;
   text-align: center;
 }
+
+td {
+  max-width: 120px;
+}
