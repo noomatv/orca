@@ -82,6 +82,9 @@ $('#sync-section-button').on('click', function() {
 
 $('#sync-button').on('click', function() {
   $('#sync-button').prop('disabled', true)
+  $('#sync-button').removeClass("btn-primary")
+  $('#sync-button').html('Syncing')
+
   ipcRenderer.send('did-submit-form', {
     s3Data: {
       accessKeyId: $('#access-key-id-input').val(),
@@ -101,4 +104,6 @@ ipcRenderer.on('update-status', (event, msg) => {
 
 ipcRenderer.on('done-syncing', (event, msg) => {
   $('#sync-button').prop('disabled', false)
+  $('#sync-button').addClass("btn-primary")
+  $('#sync-button').html('Sync')
 })
