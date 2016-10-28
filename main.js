@@ -68,7 +68,6 @@ function handleSubmission() {
 
     NM_PAGE_COUNT = 0
     NM_VIDEO_COUNT = 0
-    NM_OTHER_PAGE_COUNT = 0
 
     return NoomaSync.startScript(dirname, s3Data, event.sender)
   });
