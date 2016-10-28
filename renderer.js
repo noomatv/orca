@@ -81,6 +81,7 @@ $('#sync-section-button').on('click', function() {
 })
 
 $('#sync-button').on('click', function() {
+  $('#sync-button').prop('disabled', true)
   ipcRenderer.send('did-submit-form', {
     s3Data: {
       accessKeyId: $('#access-key-id-input').val(),
@@ -96,4 +97,8 @@ $('#sync-button').on('click', function() {
 
 ipcRenderer.on('update-status', (event, msg) => {
   $('#update-status-paragraph').text(msg.msg)
-});
+})
+
+ipcRenderer.on('done-syncing', (event, msg) => {
+  $('#sync-button').prop('disabled', false)
+})
