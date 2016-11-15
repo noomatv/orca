@@ -2,6 +2,11 @@
   width: 15px;
 }
 
+#section-container {
+  max-height: 800px;
+  overflow-y: scroll;
+}
+
 #aws-section,
 #bookshelf-section {
   display: none;
@@ -24,5 +29,5 @@ img {
 }
 
 td {
-  max-width: 120px;
+  width: 120px;
 }
